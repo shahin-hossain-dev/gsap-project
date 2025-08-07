@@ -20,8 +20,8 @@ const GsapScrollTrigger = () => {
         scrollTrigger: {
           trigger: helloBox.current,
           scrub: true,
-          start: "bottom bottom",
-          end: "top 20%",
+          start: "bottom bottom", // object bottom যখন screen এর bottom এ hit করবে তখন scroll trigger start হবে।
+          end: "top 20%", // object top যখন screen এর bottom এ 20% hit করবে তখন scroll trigger off হবে।
         },
       });
 

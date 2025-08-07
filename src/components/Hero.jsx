@@ -6,8 +6,47 @@ import { useMediaQuery } from "react-responsive";
 
 const Hero = () => {
   const videoRef = useRef();
-
   const isMobile = useMediaQuery({ maxWidth: 767 });
+
+  useGSAP(() => {
+    const heroTextSplit = new SplitText(".title", { type: "chars, words" }); //split character by character
+    const paragraph = new SplitText(".subtitle", { type: "lines" }); //split line by line
+
+    heroTextSplit.chars.forEach((char) => char.classList.add("text-gradient"));
+
+    // hero text animate
+    gsap.from(heroTextSplit.chars, {
+      yPercent: 100,
+      duration: 1.8,
+      ease: "expo.out",
+      stagger: {
+        each: 0.06,
+      },
+    });
+    //paragraph animate
+    gsap.from(paragraph.lines, {
+      opacity: 0,
+      duration: 1.5,
+      yPercent: 100,
+      delay: 1,
+      ease: "expo.out",
+      stagger: {
+        each: "0.05",
+      },
+    });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      })
+      .to(".left-leaf", { y: -300 }, 0)
+      .to(".right-leaf", { y: 290 }, 0);
+  }, []);
 
   return (
     <>

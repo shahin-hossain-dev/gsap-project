@@ -11,6 +11,7 @@ function App() {
     <div>
       <Navbar />
       <Hero />
+      <div className="bg-black h-dvh"></div>
     </div>
   );
 }
