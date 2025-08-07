@@ -35,6 +35,7 @@ const Hero = () => {
       },
     });
 
+    // left-right left animated
     gsap
       .timeline({
         scrollTrigger: {
@@ -46,6 +47,25 @@ const Hero = () => {
       })
       .to(".left-leaf", { y: -300 }, 0)
       .to(".right-leaf", { y: 290 }, 0);
+
+    const startVideo = isMobile ? "top 50%" : "center 64%";
+    const endVideo = isMobile ? "120% top" : "bottom top";
+
+    const videoTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: "video",
+        start: startVideo,
+        end: endVideo,
+        scrub: true,
+        // pin: true,
+      },
+    });
+
+    videoRef.current.onloadedmetadata = () => {
+      videoTimeline.to(videoRef.current, {
+        currentTime: videoRef.current.duration,
+      });
+    };
   }, []);
 
   return (
