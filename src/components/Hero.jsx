@@ -57,7 +57,7 @@ const Hero = () => {
         start: startVideo,
         end: endVideo,
         scrub: true,
-        // pin: true,
+        pin: true,
       },
     });
 
